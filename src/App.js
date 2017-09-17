@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Counter from './components/Counter';
+import TransactionCard from './components/transaction-cards';
+
 
 function App2(props) {
   return <button onClick={props.func}> {props.name}</button>    //wywolanie funkcji rodzica
 }
 
 class App extends Component {
+  
   constructor(props) {
     super(props);
     this.state={
@@ -19,7 +23,7 @@ class App extends Component {
     console.log(this.props);
     const name="Hamer";
     let myList = this.state.lista.map((element)=>{
-      return <li>{element}</li>
+      return <li key={element}>{element}</li>
     }); 
 
     return (
@@ -32,12 +36,22 @@ class App extends Component {
           HI {name} {this.state.counter}
         </p>
         <button onClick={this.clickCounter}> Click me </button>
-        <div>{this.state.lista}</div> 
+        {/* <div>{this.state.lista}</div>  */}
         <ul>{myList}</ul>
+
+        <div>
+          <h1>Counter component</h1>
+          <Counter />
+        </div>
+
+        <div>
+          <h1>Transaction Card component</h1>
+          <TransactionCard item= "hej" />
+        </div>
+
       </div>
     );
   }
-
 
   clickCounter = ()=> {
     this.setState({ counter: this.state.counter + 1 }); //wywoluje metode render w komponencie    
